@@ -1,4 +1,4 @@
-canvas=new fabric.Canvas('canvas1');
+var canvas=new fabric.Canvas('canvas1');
 block_height =30;
 block_width=30;
 
@@ -29,7 +29,7 @@ fabric.Image.fromURL(get_image , function(Img)
 block_obj = Img ;
 block_obj.scaleToWidth(block_width);
 block_obj.scaleToHeight(block_height);
-bloack_obj.set({
+block_obj.set({
 top:player_y ,
 left:player_x
 });
@@ -44,7 +44,7 @@ function myKeydown(e){
 Keyvalue = e.keyCode ;
 console.log(Keyvalue);
 
-if( e.shiftkey == true && Keyvalue == '80' ){
+if( e.shiftKey == true && Keyvalue == '80' ){
 console.log("P and shift");
 block_width = block_width + 10 ;
 block_height = block_height + 10 ;
@@ -53,7 +53,7 @@ document.getElementById("current_width").innerHTML = block_width ;
 document.getElementById("current_height").innerHTML = block_height ;
 }
 
-if( e.shiftkey == true && Keyvalue == '77'){
+if( e.shiftKey == true && Keyvalue == '77'){
     console.log("M and shift");
     block_width = block_width - 10 ;
     block_height = block_height - 10 ;
@@ -118,12 +118,52 @@ if(Keyvalue == '68'){
 }
 
 if(Keyvalue == '85'){
-    new_img('unique.jpg');
+    new_img('unique.png');
     console.log("U");
 }
 
 if(Keyvalue == '67'){
     new_img('cloud.jpg');
     console.log("C");
+}
+}
+
+function up(){
+if(player_y >= 0){
+    player_y = player_y - block_height ;
+    console.log("Block Image height = " + block_height);
+    console.log("When up arrow is pressed ,X =" + player_x +"Y = " + player_y);
+    canvas.remove(player_obj);
+    player_update();
+}
+}
+
+function down(){
+if(player_y <= 500){
+    player_y = player_y + block_height ;
+    console.log("Block Image height = " + block_height);
+    console.log("When down arrow is pressed ,X =" + player_x + "Y = " + player_y);
+    canvas.remove(player_obj);
+    player_update();
+}
+}
+
+function left(){
+if(player_x >= 0){
+    player_x = player_x - block_width ;
+    console.log("Block Image width = " + block_width);
+    console.log("When left arrow is pressed ,X =" + player_x + "Y = " + player_y);
+    canvas.remove(player_obj);
+    player_update();
+}
+}
+
+function right(){
+if(player_x <= 900){
+    player_x = player_x + block_width ;
+    console.log("Block Image width = " + block_width) ;
+    console.log("When left arrow is pressed ,X =" + player_x + "Y = " + player_y);
+    canvas.remove(player_obj);
+    player_update();
 }
 }
